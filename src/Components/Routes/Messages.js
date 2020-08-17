@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { DataContext } from "../../App";
+import { Link } from 'react-router-dom';
 import apiUrl from "../../apiConfig";
 import axios from "axios";
 
@@ -36,7 +37,6 @@ const Messages = () => {
           url: `${apiUrl}/caregivers/fromteacher/${id}`,
           method: "GET",
         });
-        console.log("responsedata", response.data);
         setCaregivers(response.data);
       } catch (err) {
         console.error(err);
@@ -69,78 +69,70 @@ const Messages = () => {
     await newMessageApiCall();
     makeAPICall();
   };
-
-  return (
-    <div className="messages">
-      <h1>Messages</h1>
-      {caregivers.map((caregiver) => {
-        let relevantMessages = messages.filter(
-          (message) => message.caregiver_id === caregiver.id
-        );
-        return (
-          <div className="thread-container">
-            <div className="thread-header">
-              {caregiver.first_name} {caregiver.last_name}
+  if (caregivers) {
+  
+  
+    return (
+      <div className="messages">
+        <h1>Messages</h1>
+        {caregivers.map((caregiver) => {
+          let relevantMessages = messages.filter(
+            (message) => message.caregiver_id === caregiver.id
+          );
+          return (
+            <div className="thread-container">
+              <Link to={{
+                pathname: `messages/${user.id}/${caregiver.id}`,
+                state: { messages: relevantMessages }
+              }}>
+                <div className="thread-header">
+                  <h4 className="thread-recipient">
+                    {caregiver.first_name} {caregiver.last_name}
+                  </h4>
+                  <h4 className="last-message-time">
+                    {relevantMessages[0]
+                      ? `${relevantMessages[0].updated_at.slice(
+                        11,
+                        16
+                      )} on ${relevantMessages[0].updated_at.slice(5, 10)}`
+                      : ""}
+                  </h4>
+                  <h4 className="last-message-summary">
+                    {relevantMessages[0]
+                      ? `${relevantMessages[0].content.slice(0, 30)}...`
+                      : ""}
+                  </h4>
+                </div>
+              </Link>
+            
             </div>
-            <div className="thread-body" id={`thread-body-${caregiver.id}`}>
-              {relevantMessages.map((message) => {
+          );
+        })}
+        <div className="message-form-containter">
+          <form onSubmit={handleSubmit}>
+            <label>To:</label>
+            <select name="caregiver_id" onChange={handleNewMessageInput}>
+              <option value=""></option>
+              {caregivers.map((person) => {
                 return (
-                  <div
-                    key={message.id}
-                    className={
-                      message.author === userFullName
-                        ? "my-message"
-                        : "their-message"
-                    }
-                  >
-                    {message.content}
-                  </div>
+                  <option value={parseInt(person.id)}>
+                    {person.first_name} {person.last_name}
+                  </option>
                 );
               })}
-            </div>
-          </div>
-        );
-      })}
-      {/* {messages.map((message) => {
-        return (
-          <div
-            key={message.id}
-            className={
-              message.author === userFullName ? "my-message" : "their-message"
-            }
-          >
-            <div className="message-bubble">
-              <h6>{message.author}</h6>
-              <p className="message-content">{message.content}</p>
-              <p className="message-timestamp">{message.updated_at}</p>
-            </div>
-          </div>
-        );
-      })}*/}
-      <div className="message-form-containter">
-        <form onSubmit={handleSubmit}>
-          <label>To:</label>
-          <select name="caregiver_id" onChange={handleNewMessageInput}>
-            <option value=""></option>
-            {caregivers.map((person) => {
-              return (
-                <option value={parseInt(person.id)}>
-                  {person.first_name} {person.last_name}
-                </option>
-              );
-            })}
-          </select>
-          <label>Message:</label>
-          <input
-            name="content"
-            type="text"
-            onChange={handleNewMessageInput}
-          ></input>
-          <input type="submit"></input>
-        </form>
+            </select>
+            <label>Message:</label>
+            <input
+              name="content"
+              type="text"
+              onChange={handleNewMessageInput}
+            ></input>
+            <input type="submit"></input>
+          </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else return <p>nothing yet</p>
 };
 
 export default Messages;

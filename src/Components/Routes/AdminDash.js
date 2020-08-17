@@ -130,15 +130,26 @@ const AdminDash = () => {
         <ul>
           {orderedStudentsList.map((student) => (
             <li key={student.id} className="admin-row">
-              Name: {student.first_name} {student.last_name} |{" "}
-              <FontAwesomeIcon icon={faBirthdayCake} /> {student.birthday} |
-              <FontAwesomeIcon icon={faUserFriends} />{" "}
-              {student.caregivers.length > 0
-                ? student.caregivers[0].first_name
-                : ""}{" "}
-              |
-              <FontAwesomeIcon icon={faChalkboardTeacher} />{" "}
-              {student.teachers.length > 0 ? student.teachers[0].last_name : ""}
+              <img src={student.photo}></img>
+              <div className="student-info">
+                <h4 className="admin-student-name">
+                  {student.first_name} {student.last_name}
+                </h4>
+                <div className="birthday">
+                  <FontAwesomeIcon icon={faBirthdayCake} />
+                  {student.birthday}
+                </div>
+                <div className="admin-caregiver">
+                  <FontAwesomeIcon icon={faUserFriends} />
+                  {student.caregivers.length > 0
+                    ? `${student.caregivers[0].first_name} ${student.caregivers[0].last_name}`
+                    : ""}
+                </div>
+                <FontAwesomeIcon icon={faChalkboardTeacher} />
+                {student.teachers.length > 0
+                  ? `${student.teachers[0].salutation} ${student.teachers[0].last_name}`
+                  : ""}
+              </div>
               <form onSubmit={handleAssignment}>
                 <label>Assign a new teacher:</label>
                 <select onChange={handleTeacherSelect}>
@@ -151,10 +162,10 @@ const AdminDash = () => {
                     );
                   })}
                 </select>
-                <input type="submit" value="assign"></input>
+                <input id="assign-submit" type="submit" value="assign"></input>
               </form>
               <button value={student.id} onClick={handleDelete}>
-                Delete
+                Delete Student
               </button>
             </li>
           ))}

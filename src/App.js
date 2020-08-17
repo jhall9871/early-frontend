@@ -10,6 +10,7 @@ import TeacherDash from "./Components/Routes/TeacherDash";
 import CareGiverDash from "./Components/Routes/CareGiverDash";
 import StudentReport from "./Components/Routes/StudentReport";
 import Messages from "./Components/Routes/Messages";
+import MessageDetail from "./Components/Routes/MessageDetail"
 import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -71,6 +72,11 @@ function App() {
             render={(routerProps) => <StudentReport {...routerProps} />}
           />
           <Route exact path="/messages" component={Messages} />
+          <Route
+            exact
+            path="/messages/:teacherid/:caregiverid"
+            render={(routerProps) => <MessageDetail {...routerProps} />}
+          />
         </Switch>
       </DataContext.Provider>
     </div>

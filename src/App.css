@@ -129,7 +129,32 @@ nav a {
 }
 
 .thread-header {
-  border-top: 1px solid var(--indigo);
+  background: var(--indigo);
+  color: white;
+  border-radius: 10px;
+  margin: 3px 0px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  padding: 0px 20px;
+}
+
+.thread-recipient {
+  color: var(--orange);
+  font-size: 1.5rem;
+  margin: 0;
+  text-align: left;
+}
+
+.last-message-summary {
+  font-style: italic;
+  text-align: left;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.last-message-time {
+  text-align: right;
 }
 
 .my-message {
@@ -251,10 +276,7 @@ nav a {
 }
 /*===========Admin Dashboard============*/
 
-
-
-
-/*===========Teacher Dashboard============*/
+/*This is for both eacher and admin*/
 .dashboard {
   height: 100vh;
   overflow: scroll;
@@ -265,6 +287,58 @@ nav a {
   align-items: center;
   color: var(--indigo);
 }
+
+.admin-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--yellow);
+  margin: 5px 5px;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: left;
+  padding: 20px;
+  font-size: 1rem;
+}
+
+.admin-row img {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  border: 2px solid var(--indigo);
+  margin-right: 20px;
+}
+
+.admin-row h4 {
+  font-size: 1.3rem;
+}
+
+.admin-row form, label, select {
+  display: block;
+}
+
+.admin-row select {
+  width: 100%;
+}
+
+.admin-row form {
+  text-align: center;
+}
+
+.admin-row form {
+  margin: 0px 20px;
+}
+
+.admin-row button, #assign-submit {
+  padding: 10px;
+  background: var(--orange);
+  margin: 10px;
+  border-radius: 5px;
+}
+
+
+/*===========Teacher Dashboard============*/
+
 .student-map {
   display: flex;
   flex-wrap: wrap;
@@ -307,14 +381,7 @@ nav a {
   margin: 0;
 }
 
-.admin-row {
-  background: #eee;
-  border: 1px solid black;
-  margin: 5px 5px;
-  padding: 5px;
-  border-radius: 5px;
-  text-align: left;
-}
+
 
 /*===========Footer=============*/
 
