@@ -57,127 +57,240 @@ ul {
 nav {
   position: fixed;
   left: 0px;
-  width: 70px;
+  top: 0px;
+  width: 68px;
   height: 100vh;
   font-size: 38px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background: white;
+  border-right: 2px solid var(--indigo);
 }
 
 nav a {
   display: block;
-  margin: 50px 0;
+  margin: 3vh 0;
   color: var(--indigo);
 }
 
 /*===============Homepage==============*/
 
 #home {
-  height: 100vh;
+  height: 96vh;
   background: var(--cream);
+  position: relative;
+  margin-top: 2vh;
+  margin-right: 20px;
+  margin-bottom: 2vh;
+  border-radius: 0px 30px 30px 0px;
+  color: var(--indigo);
+  overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  color: var(--indigo);
 }
+
 
 #home h2 {
   color: var(--red);
-  margin: 10px 0px;
-  font-weight: 200;
-}
-
-#home h3 {
-  font-weight: 200;
+  margin-top: -12px;
+  font-size: 1.8rem;
 }
 
 .login-wrapper {
   background: var(--yellow);
   border-radius: 20px;
   padding: 30px;
-  margin: 20px 0px;
+  margin: 10px 30px;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .login-wrapper h3 {
   margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 #home form {
   text-align: left;
   font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
-.form-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+#home svg {
+  margin: auto;
 }
 
 #home label {
   margin-right: 10px;
+  font-size: 1.2rem;
+  text-align: left;
 }
 
 #home input {
   border: 1px solid var(--indigo);
   border-radius: 5px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-family: "Pragati Narrow", sans-serif;
   margin: 5px 0px;
   background: white;
   color: #666;
   padding: 0px 5px 0px 5px;
+  width: 90%;
+}
+
+.submit-class {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  display: block;
+  text-align: center;
+  min-width: 96.5%;
+  background: black;
 }
 /*============ Messages ==========*/
 
 .messages {
+  height: 96vh;
+  background: var(--cream);
+  position: relative;
+  margin-top: 2vh;
+  margin-right: 20px;
+  margin-bottom: 2vh;
+  border-radius: 0px 30px 30px 0px;
+  color: var(--indigo);
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  margin: 0 20px;
+  justify-content: center;
+}
+
+.messages h2 {
+  margin: 20px;
+}
+
+.thread-container {
+  padding: 0px 10px;
 }
 
 .thread-header {
-  background: var(--indigo);
-  color: white;
+  background: var(--yellow);
+  color: var(--indigo);
   border-radius: 10px;
   margin: 3px 0px;
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-  padding: 0px 20px;
+  padding: 0px 10px;
 }
 
 .thread-recipient {
-  color: var(--orange);
-  font-size: 1.5rem;
+  color: var(--red);
+  font-size: 1.6rem;
   margin: 0;
   text-align: left;
+  font-weight: 500;
 }
 
 .last-message-summary {
   font-style: italic;
   text-align: left;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
   grid-column-start: 1;
   grid-column-end: 3;
 }
 
 .last-message-time {
   text-align: right;
+  font-size: 1.3rem;
+  font-weight: 200;
+}
+
+
+/*============ MessageDetail and MessageDetailCg ==========*/
+
+.message-detail {
+  height: 96vh;
+  background: var(--cream);
+  position: relative;
+  margin-top: 2vh;
+  margin-right: 20px;
+  margin-bottom: 2vh;
+  border-radius: 0px 30px 30px 0px;
+  color: var(--indigo);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 1.4rem;
 }
 
 .my-message {
   background: var(--orange);
   border-radius: 20px;
-  margin: 10px 50% 10px 0;
+  margin: 10px 40% 10px 10px;
+  padding: 10px;
 }
 
 .their-message {
   background: var(--yellow);
   border-radius: 20px;
-  margin: 10px 0 10px 50%;
+  margin: 10px 10px 10px 40%;
+  padding: 10px;
 }
+
+.message-form-container {
+  background: var(--orange);
+  position: absolute;
+  bottom: 0px;
+  margin-right: 20px;
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-form-container form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.message-form-container input {
+  font-size: 1.4rem;
+  border-radius: 20px;
+  padding: 10px;
+  font-family: "Pragati Narrow", sans-serif;
+  background: var(--cream);
+  color: var(--indigo);
+  width: 80%;
+}
+
+.message-form-container button {
+  font-size: 3rem;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  margin-left: 20px;
+  border: 3px solid var(--cream);
+  cursor: pointer;
+  background: transparent;
+  color: var(--cream);
+
+}
+
 
 /*============ Student Report ==========*/
 
@@ -185,7 +298,7 @@ nav a {
   position: relative;
   margin-top: 20px;
   margin-right: 20px;
-  border-radius: 30px;
+  border-radius: 0px 30px 30px 0px;
   background: var(--cream);
 }
 
@@ -277,6 +390,7 @@ nav a {
 
 .skills-tile button {
   background: transparent;
+  cursor: pointer;
 }
 
 .skills-tile svg {
@@ -284,18 +398,28 @@ nav a {
   color: var(--indigo);
   font-size: 1.3rem;
 }
+
+.skills-chart {
+  margin: 15px 0;
+}
+
 /*===========Admin Dashboard============*/
 
 /*This is for both eacher and admin*/
 .dashboard {
-  height: 100vh;
-  overflow: scroll;
+  height: 96vh;
   background: var(--cream);
+  position: relative;
+  margin-top: 2vh;
+  margin-right: 20px;
+  margin-bottom: 2vh;
+  border-radius: 0px 30px 30px 0px;
+  color: var(--indigo);
+  /* overflow: auto; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: var(--indigo);
+  justify-content: flex-start;
+  font-size: 1.4rem;
 }
 
 .admin-row {
@@ -303,9 +427,9 @@ nav a {
   justify-content: space-around;
   align-items: center;
   background: var(--yellow);
-  margin: 5px 5px;
+  margin: 5px 20px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 20px;
   text-align: left;
   padding: 20px;
   font-size: 1rem;
@@ -315,12 +439,16 @@ nav a {
   height: 120px;
   width: 120px;
   border-radius: 50%;
-  border: 2px solid var(--indigo);
   margin-right: 20px;
+  box-shadow: 2px 2px 5px;
 }
 
 .admin-row h4 {
   font-size: 1.3rem;
+}
+
+.admin-row svg {
+  margin-right: 10px;
 }
 
 .admin-row form, label, select {
@@ -333,22 +461,68 @@ nav a {
 
 .admin-row form {
   text-align: center;
-}
-
-.admin-row form {
+  font-size: 1.2rem;
   margin: 0px 20px;
+  font-family: "Pragati Narrow", sans-serif;
 }
 
 .admin-row button, #assign-submit {
   padding: 10px;
   background: var(--orange);
   margin: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-family: "Pragati Narrow", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  color: var(--indigo);
+}
+
+.admin-row select, .admin-row option {
+  font-family: "Pragati Narrow", sans-serif;
+  border-radius: 10px;
+  padding: 5px;
+  background: var(--cream);
+}
+
+#add-child-button {
+  position: absolute;
+  color: var(--indigo);
+  right: 10px;
+  top: 5px;
+  width: 60px;
+  height: 60px;
+  font-size: 2.5rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.add-child-form {
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--orange);
+  border-radius: 20px;
+  min-width: 300px;
+}
+
+.add-child-form input, .add-child-form button {
+  font-family: "Pragati Narrow", sans-serif;
+  padding: 5px;
+  font-size: 1.2rem;
+  color: var(--indigo);
+  border-radius: 10px;
+  display: block;
+  margin: 10px auto;
 }
 
 
 /*===========Teacher Dashboard============*/
 
+.dashboard h2, h3 {
+  margin: 10px auto;
+}
 
 .student-map {
   display: flex;
@@ -371,25 +545,22 @@ nav a {
   padding: 10px;
 }
 
-.child-tile-overlay {
-  position: absolute;
-  height: 200px;
-  width: 200px;
-  background: rgb(255,255,255);
-  background: linear-gradient(180deg, rgba(255,255,255,0) 52%, rgba(244,211,94,1) 83%);
-}
-
-.child-tile img {
+  .child-tile img {
   height: 180px;
   width: 180px;
   border-radius: 10px;
 }
 
 .child-tile h4 {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   position: absolute;
-  bottom: 10px;
+  bottom: 3px;
   margin: 0;
+  background: rgba(244,211,94,1);
+  border-radius: 7px;
+  line-height: 1.6rem;
+  padding: 2px 4px;
+  text-shadow: 1px 1px  var(--yellow);
 }
 
 

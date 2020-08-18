@@ -105,19 +105,19 @@ const StudentReport = (props) => {
     makeAPICall();
   };
 
-  //click function for non-teachers
-  const handleInvalidClick = () => {
-    console.log("only teachers can do that.");
-  };
-
   //calculate student age (thank you, https://stackoverflow.com/questions/4060004/calculate-age-given-the-birth-date-in-the-format-yyyymmdd)
   const getAge = (dateString) => {
     let today = new Date();
     let birthDate = new Date(dateString);
     let age = today.getFullYear() - birthDate.getFullYear();
     let m = today.getMonth() - birthDate.getMonth();
+    console.log('birthday', birthDate, 'age', age, 'm', m)
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age--;
+    }
+    if (age < 2) {
+      age *= 12;
+      age += " months";
     }
     return age;
   };
@@ -142,49 +142,41 @@ const StudentReport = (props) => {
         <SkillsTile
           skills={grossmotorskills}
           abilities={grossmotorabilities}
-          handleInvalidClick={handleInvalidClick}
           handleSkillClick={handleSkillClick}
         />
         <SkillsTile
           skills={kitchenskills}
           abilities={kitchenabilities}
-          handleInvalidClick={handleInvalidClick}
           handleSkillClick={handleSkillClick}
         />
         <SkillsTile
           skills={selfskills}
           abilities={selfabilities}
-          handleInvalidClick={handleInvalidClick}
           handleSkillClick={handleSkillClick}
         />
         <SkillsTile
           skills={envskills}
           abilities={envabilities}
-          handleInvalidClick={handleInvalidClick}
           handleSkillClick={handleSkillClick}
         />
         <SkillsTile
           skills={mannersskills}
           abilities={mannersabilities}
-          handleInvalidClick={handleInvalidClick}
           handleSkillClick={handleSkillClick}
         />
         <SkillsTile
           skills={fineskills}
           abilities={fineabilities}
-          handleInvalidClick={handleInvalidClick}
           handleSkillClick={handleSkillClick}
         />
         <SkillsTile
           skills={artskills}
           abilities={artabilities}
-          handleInvalidClick={handleInvalidClick}
           handleSkillClick={handleSkillClick}
         />
         <SkillsTile
           skills={lifeskills}
           abilities={lifeabilities}
-          handleInvalidClick={handleInvalidClick}
           handleSkillClick={handleSkillClick}
         />
       </div>

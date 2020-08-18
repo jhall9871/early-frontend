@@ -3,6 +3,8 @@ import { Redirect } from "react-router-dom";
 import { DataContext } from "../../App";
 import axios from "axios";
 import apiUrl from "../../apiConfig";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 const MessageDetailCg = (props) => {
   const { user, userType } = useContext(DataContext);
@@ -52,8 +54,12 @@ const MessageDetailCg = (props) => {
   };
 
   return (
-    <div>
-      <p>message detail</p>
+    <div className="message-detail">
+      <h3>
+        {teacherInfo
+          ? `${teacherInfo[0].first_name} ${teacherInfo[0].last_name}`
+          : ""}
+      </h3>
       <div className="thread-body">
         {filteredMessages.map((message) => {
           return (
@@ -69,20 +75,16 @@ const MessageDetailCg = (props) => {
         })}
       </div>
 
-      <div className="message-form-containter">
+      <div className="message-form-container">
         <form onSubmit={handleNewMessageSubmit}>
-          <label>
-            Write to{" "}
-            {teacherInfo
-              ? `${teacherInfo[0].first_name} ${teacherInfo[0].last_name}`
-              : ""}
-          </label>
           <input
             name="content"
             type="text"
             onChange={handleNewMessageInput}
           ></input>
-          <input type="submit"></input>
+          <button type="submit">
+            <FontAwesomeIcon icon={faArrowUp} />
+          </button>
         </form>
       </div>
     </div>

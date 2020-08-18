@@ -6,6 +6,7 @@ import {
   faBirthdayCake,
   faChalkboardTeacher,
   faUserFriends,
+  faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 const AdminDash = () => {
@@ -13,6 +14,7 @@ const AdminDash = () => {
   const [teachers, setTeachers] = useState([]);
   const [newChild, setNewChild] = useState({});
   const [teacherAssignment, setTeacherAssignment] = useState(null);
+  const [showModal, setShowModal] = useState("none");
 
   //helper function for ordered lists
   const compare = (a, b) => {
@@ -123,10 +125,22 @@ const AdminDash = () => {
     makeAPICall();
   };
 
+  //handle the button to show the modal add student form
+  const handleShowModal = () => {
+    if (showModal === "none") {
+      setShowModal("block");
+    } else {
+      setShowModal("none");
+    }
+  };
+
   if (students.length > 0) {
     return (
       <div className="dashboard" id="admin-dash">
         <h2>Admin Dash</h2>
+        <button id="add-child-button" onClick={handleShowModal}>
+          <FontAwesomeIcon icon={faPlusCircle} />
+        </button>
         <ul>
           {orderedStudentsList.map((student) => (
             <li key={student.id} className="admin-row">
@@ -162,15 +176,15 @@ const AdminDash = () => {
                     );
                   })}
                 </select>
-                <input id="assign-submit" type="submit" value="assign"></input>
+                <input id="assign-submit" type="submit" value="Assign"></input>
               </form>
               <button value={student.id} onClick={handleDelete}>
-                Delete Student
+                Remove Student
               </button>
             </li>
           ))}
         </ul>
-        <div className="add-child-form">
+        <div className="add-child-form" style={{ display: showModal }}>
           <h3>Add a child:</h3>
           <form onSubmit={handleSubmit}>
             <label>First Name</label>

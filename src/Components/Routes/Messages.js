@@ -22,7 +22,7 @@ const Messages = ({ caregivers, teachers, messages }) => {
     if (caregivers) {
       return (
         <div className="messages">
-          <h2>Messages</h2>
+          <h2>{user.salutation} {user.last_name}'s Messages</h2>
           {caregivers.map((caregiver) => {
             let relevantMessages = messages.filter(
               (message) => message.caregiver_id === caregiver.id
@@ -63,7 +63,7 @@ const Messages = ({ caregivers, teachers, messages }) => {
   } else if (userType === "caregiver") {
     return (
       <div className="messages">
-        <h2>Caregiver Messages</h2>
+        <h2>{user.salutation} {user.last_name}'s Messages</h2>
         {teachers.map((teacher) => {
             let relevantMessages = messages.filter(
               (message) => message.teacher_id === teacher.id
