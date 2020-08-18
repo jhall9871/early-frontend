@@ -1,32 +1,32 @@
 import React, { useContext, useState } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import { DataContext } from "../../App";
 import axios from "axios";
 import apiUrl from "../../apiConfig";
 
-const MessageDetail = (props) => {
+const MessageDetailCg = (props) => {
   const { user, userType } = useContext(DataContext);
-  const caregiverId = props.location.state.caregiver_id;
+  const teacherId = props.location.state.teacher_id;
   const userFullName = user.first_name + " " + user.last_name;
   const [newMessage, setNewMessage] = useState({
-    teacher_id: user.id,
+    caregiver_id: user.id,
     author: userFullName,
-    caregiver_id: caregiverId
+    teacher_id: teacherId,
   });
-  const caregiverInfo = props.caregivers.filter(caregiver => caregiver.id === caregiverId)
-
-  console.log('messagedetail props', props)
+  const teacherInfo = props.teachers.filter(
+    (teacher) => teacher.id === teacherId
+  );
 
   // This will zip you back to the homepage if you accidentally reload the page (causing the user to be reset)
   if (props.messages === undefined || user.id === undefined) {
-    console.log('redirecting')
-    return <Redirect to={'/'} />
+    console.log("redirecting");
+    return <Redirect to={"/"} />;
   }
 
-  // Caregiver ID is coming from Messages.js, and messages through App.js.
+  // Teacher ID is coming from Messages.js, and messages through App.js.
   // Create an array of all the relevant messages based on those two variables.
   const filteredMessages = props.messages.filter(
-    (message) => message.caregiver_id === caregiverId
+    (message) => message.teacher_id === teacherId
   );
 
   //handle input on new message form
@@ -71,7 +71,12 @@ const MessageDetail = (props) => {
 
       <div className="message-form-containter">
         <form onSubmit={handleNewMessageSubmit}>
-          <label>Write to {caregiverInfo ? `${caregiverInfo[0].first_name} ${caregiverInfo[0].last_name}` : "" }</label>
+          <label>
+            Write to{" "}
+            {teacherInfo
+              ? `${teacherInfo[0].first_name} ${teacherInfo[0].last_name}`
+              : ""}
+          </label>
           <input
             name="content"
             type="text"
@@ -84,4 +89,4 @@ const MessageDetail = (props) => {
   );
 };
 
-export default MessageDetail;
+export default MessageDetailCg;

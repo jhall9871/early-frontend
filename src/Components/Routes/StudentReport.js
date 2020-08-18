@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Redirect } from 'react-router-dom';
 import { DataContext } from "../../App";
 import SkillsTile from "./SkillsTile";
 import axios from "axios";
@@ -26,6 +27,11 @@ const StudentReport = (props) => {
   useEffect(() => {
     makeAPICall();
   }, []);
+
+  if (user.id === undefined) {
+    console.log('redirecting')
+    return <Redirect to={'/'} />
+  }
 
   //helper function for ordered lists
   const compare = (a, b) => {

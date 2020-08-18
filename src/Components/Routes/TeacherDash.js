@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { DataContext } from "../../App";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import axios from "axios";
 import apiUrl from '../../apiConfig';
@@ -8,6 +8,8 @@ import apiUrl from '../../apiConfig';
 const TeacherDash = () => {
   const [students, setStudents] = useState([]);
   const { user, userType } = useContext(DataContext);
+
+console.log('teacherdash user', user)
 
   // When component mounts, get all students and set in state.
   useEffect(() => {
@@ -24,6 +26,12 @@ const TeacherDash = () => {
     };
     makeAPICall();
   }, []);
+
+  // Zip back to the login page if no user.
+  if (user.id === undefined) {
+    console.log('redirecting')
+    return <Redirect to={'/'} />
+  }
 
   return (
     <div className="dashboard" id="teacher-dash">
