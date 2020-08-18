@@ -8,6 +8,11 @@
   vertical-align: baseline;
 }
 
+html {
+  font-size: 16px;
+}
+
+
 :root {
   --indigo: #0d3b66;
   --cream: #faf0ca;
@@ -576,11 +581,10 @@ nav a {
 
 
 
-/*===========Footer=============*/
+/*===========Mobile=============*/
 
-#footer {
-  position: fixed;
-  bottom: 0px;
-  width: 100vw;
-  background: #eee;
+@media only screen and (max-width:700px) {
+  html {
+    font-size: 12px;
+  }
 }
