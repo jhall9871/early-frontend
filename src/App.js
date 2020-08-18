@@ -11,6 +11,7 @@ import CareGiverDash from "./Components/Routes/CareGiverDash";
 import StudentReport from "./Components/Routes/StudentReport";
 import Messages from "./Components/Routes/Messages";
 import MessageDetail from "./Components/Routes/MessageDetail";
+import MessageDetailCg from './Components/Routes/MessageDetailCg';
 import "./App.css";
 
 export const DataContext = createContext();
@@ -21,6 +22,7 @@ function App() {
   const [userType, setUserType] = useState("");
   const [caregivers, setCaregivers] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [teachers, setTeachers] = useState([]);
 
   // On login, set the user based on the id input.
   const handleLogIn = async (e) => {
@@ -35,7 +37,7 @@ function App() {
           method: "GET",
         });
         setUser(response.data);
-        setMessages(response.data.messages)
+        setMessages(response.data.messages);
       } catch (err) {
         console.error(err);
       }
@@ -53,7 +55,25 @@ function App() {
         console.error(err);
       }
     };
-    getCaregivers();
+    // If the user is a caregiver, construct a list of their associated teachers.
+    const getTeachers = async () => {
+      try {
+        const response = await axios({
+          url: `${apiUrl}/teachers/fromcaregiver/${userId}`,
+          method: "GET",
+        });
+        setTeachers(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    if (inputUserType === "teacher") {
+      getCaregivers();
+      setTeachers([]);
+    } else if (inputUserType === "caregiver") {
+      getTeachers();
+      setCaregivers([]);
+    }
   };
 
   const handleLogInChange = (e) => {
@@ -69,11 +89,11 @@ function App() {
         url: `${apiUrl}/${userType}s/${user.id}`,
         method: "GET",
       });
-      setMessages(response.data.messages)
+      setMessages(response.data.messages);
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   const handleLogOut = () => {
     setUser({});
@@ -107,16 +127,38 @@ function App() {
             exact
             path="/messages"
             render={(routerProps) => (
-              <Messages {...routerProps} caregivers={caregivers} messages={messages} />
+              <Messages
+                {...routerProps}
+                caregivers={caregivers}
+                teachers={teachers}
+                messages={messages}
+              />
             )}
           />
           <Route
             exact
             path="/messages/detail"
-            render={(routerProps) => <MessageDetail {...routerProps} messages={messages} messageReload={messageReload} caregivers={caregivers}/>}
-          
+            render={(routerProps) => (
+              <MessageDetail
+                {...routerProps}
+                messages={messages}
+                messageReload={messageReload}
+                caregivers={caregivers}
+              />
+            )}
           />
-          
+          <Route
+            exact
+            path="/messages/detail-caregiver"
+            render={(routerProps) => (
+              <MessageDetailCg
+                {...routerProps}
+                messages={messages}
+                messageReload={messageReload}
+                teachers={teachers}
+              />
+            )}
+          />
         </Switch>
       </DataContext.Provider>
     </div>

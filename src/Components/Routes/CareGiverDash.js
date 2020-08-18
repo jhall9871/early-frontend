@@ -29,6 +29,7 @@ const CareGiverDash = () => {
       {children.map((child) => (
         <Link key={child.id} to={`/childreport/${child.id}`}>
           <div className="child-tile">
+            <img src={child.photo} />
             <h4>
               {child.first_name} {child.last_name}
             </h4>
