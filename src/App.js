@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import axios from "axios";
 import apiUrl from "./apiConfig";
 

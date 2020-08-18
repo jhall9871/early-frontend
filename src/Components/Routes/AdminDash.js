@@ -147,7 +147,7 @@ const AdminDash = () => {
               <img src={student.photo}></img>
               <div className="student-info">
                 <h4 className="admin-student-name">
-                  {student.first_name} {student.last_name}
+                  {student.first_name} {student.last_name} <span className="pronouns">({student.pronouns})</span>
                 </h4>
                 <div className="birthday">
                   <FontAwesomeIcon icon={faBirthdayCake} />

@@ -305,7 +305,7 @@ nav a {
 .photo-card {
   position: absolute;
   top: -10px;
-  left: -20px;
+  left: -14px;
   background: var(--indigo);
   width: 200px;
   height: 200px;
@@ -323,7 +323,7 @@ nav a {
 
 .student-title-row {
   color: var(--red);
-  padding-left: 188px;
+  padding-left: 196px;
   text-align: left;
   font-weight: 200;
   height: 40px;
@@ -335,17 +335,19 @@ nav a {
   background: var(--indigo);
   color: white;
   text-align: left;
-  height: 70px;
+  /* height: 70px; */
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: baseline;
+  flex-wrap: wrap;
   padding: 20px 20px 20px 188px;
 }
 
 .student-info-row h3 {
   font-size: 3rem;
   margin-right: 20px;
+  margin-left: 10px;
 }
 
 .student-info-row h4 {
@@ -356,8 +358,10 @@ nav a {
 /*============Skills tile=============*/
 
 .skills-tile-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
   padding-top: 50px;
 }
 
@@ -369,6 +373,7 @@ nav a {
   display: flex;
   flex-direction: column;
   color: var(--indigo);
+  width: 250px;
 }
 
 .skills-tile h3 {
@@ -377,6 +382,7 @@ nav a {
 
 .skills-row {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
   margin: 3px 0;
@@ -447,6 +453,10 @@ nav a {
   font-size: 1.3rem;
 }
 
+.admin-row .pronouns {
+  font-size: 1rem;
+}
+
 .admin-row svg {
   margin-right: 10px;
 }
@@ -475,6 +485,7 @@ nav a {
   font-size: 1.2rem;
   line-height: 1.2rem;
   color: var(--indigo);
+  cursor: pointer;
 }
 
 .admin-row select, .admin-row option {

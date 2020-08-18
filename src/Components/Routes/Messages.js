@@ -99,6 +99,8 @@ const Messages = ({ caregivers, teachers, messages }) => {
             );
           })}      </div>
     );
+  } else if (userType === "admin") {
+    return <Redirect to={"/"} />
   }
 };
 
