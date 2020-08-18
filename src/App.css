@@ -65,7 +65,7 @@ nav {
   top: 0px;
   width: 68px;
   height: 100vh;
-  font-size: 38px;
+  font-size: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,6 +96,9 @@ nav a {
   justify-content: center;
 }
 
+.logo-container img {
+  width: 200px;
+}
 
 #home h2 {
   color: var(--red);
@@ -587,4 +590,5 @@ nav a {
   html {
     font-size: 12px;
   }
+  
 }
