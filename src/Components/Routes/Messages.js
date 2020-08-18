@@ -1,80 +1,50 @@
 import React, { useContext, useState, useEffect } from "react";
 import { DataContext } from "../../App";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import apiUrl from "../../apiConfig";
 import axios from "axios";
 
-const Messages = () => {
+const Messages = ({ caregivers, messages }) => {
   const { user, userType } = useContext(DataContext);
-  const [messages, setMessages] = useState([]);
-  const [caregivers, setCaregivers] = useState([]);
-  const id = user.id;
   const userFullName = user.first_name + " " + user.last_name;
-  const [newMessage, setNewMessage] = useState({
-    teacher_id: user.id,
-    author: userFullName,
-  });
+  // const [newMessage, setNewMessage] = useState({
+  //   teacher_id: user.id,
+  //   author: userFullName,
+  // });
 
-  //Get messages (helper function)
-  const makeAPICall = async () => {
-    try {
-      const response = await axios({
-        url: `${apiUrl}/${userType}s/${id}`,
-        method: "GET",
-      });
-      setMessages(response.data.messages);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  // //handle input on new message form
+  // const handleNewMessageInput = (e) => {
+  //   setNewMessage({
+  //     ...newMessage,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
-  //load messages on component mount
-  useEffect(() => {
-    //construct the list of relevant caregivers
-    const caregiversAPIcall = async () => {
-      try {
-        const response = await axios({
-          url: `${apiUrl}/caregivers/fromteacher/${id}`,
-          method: "GET",
-        });
-        setCaregivers(response.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    if (user.id) {
-      makeAPICall();
-      caregiversAPIcall();
-    }
-  }, []);
+  // //handle submit new message
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const newMessageApiCall = async () => {
+  //     try {
+  //       await axios.post(`${apiUrl}/messages`, newMessage);
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
+  //   await newMessageApiCall();
+  //   // makeAPICall();
+  // };
 
-  //handle input on new message form
-  const handleNewMessageInput = (e) => {
-    setNewMessage({
-      ...newMessage,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // if there's no user, go back to login.
+  if (user.id === undefined) {
+    console.log('redirecting')
+    return <Redirect to={'/'} />
+  }
 
-  //handle submit new message
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newMessageApiCall = async () => {
-      try {
-        await axios.post(`${apiUrl}/messages`, newMessage);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    await newMessageApiCall();
-    makeAPICall();
-  };
   if (caregivers) {
-  
   
     return (
       <div className="messages">
-        <h1>Messages</h1>
+        <h2>Messages</h2>
         {caregivers.map((caregiver) => {
           let relevantMessages = messages.filter(
             (message) => message.caregiver_id === caregiver.id
@@ -82,8 +52,8 @@ const Messages = () => {
           return (
             <div className="thread-container">
               <Link to={{
-                pathname: `messages/${user.id}/${caregiver.id}`,
-                state: { messages: relevantMessages }
+                pathname: `messages/detail`,
+                state: { caregiver_id: caregiver.id}
               }}>
                 <div className="thread-header">
                   <h4 className="thread-recipient">
@@ -108,7 +78,7 @@ const Messages = () => {
             </div>
           );
         })}
-        <div className="message-form-containter">
+        {/* <div className="message-form-containter">
           <form onSubmit={handleSubmit}>
             <label>To:</label>
             <select name="caregiver_id" onChange={handleNewMessageInput}>
@@ -129,7 +99,7 @@ const Messages = () => {
             ></input>
             <input type="submit"></input>
           </form>
-        </div>
+        </div> */}
       </div>
     );
   } else return <p>nothing yet</p>

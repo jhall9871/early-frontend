@@ -10,31 +10,50 @@ import TeacherDash from "./Components/Routes/TeacherDash";
 import CareGiverDash from "./Components/Routes/CareGiverDash";
 import StudentReport from "./Components/Routes/StudentReport";
 import Messages from "./Components/Routes/Messages";
-import MessageDetail from "./Components/Routes/MessageDetail"
+import MessageDetail from "./Components/Routes/MessageDetail";
 import "./App.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const DataContext = createContext();
 
 function App() {
   const [input, setInput] = useState("");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({}); //includes associated messages and children!
   const [userType, setUserType] = useState("");
+  const [caregivers, setCaregivers] = useState([]);
+  const [messages, setMessages] = useState([]);
 
+  // On login, set the user based on the id input.
   const handleLogIn = async (e) => {
     e.preventDefault();
     const inputUserType = Object.keys(input)[0];
     const userId = parseInt(Object.values(input)[0]);
     setUserType(inputUserType);
-    try {
-      const response = await axios({
-        url: `${apiUrl}/${inputUserType}s/${userId}`,
-        method: "GET",
-      });
-      setUser(response.data);
-    } catch (err) {
-      console.error(err);
-    }
+    const getUser = async () => {
+      try {
+        const response = await axios({
+          url: `${apiUrl}/${inputUserType}s/${userId}`,
+          method: "GET",
+        });
+        setUser(response.data);
+        setMessages(response.data.messages)
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getUser();
+    // If the user is a teacher, construct a list of their associated caregivers.
+    const getCaregivers = async () => {
+      try {
+        const response = await axios({
+          url: `${apiUrl}/caregivers/fromteacher/${userId}`,
+          method: "GET",
+        });
+        setCaregivers(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getCaregivers();
   };
 
   const handleLogInChange = (e) => {
@@ -42,6 +61,19 @@ function App() {
       [e.target.name]: e.target.value,
     });
   };
+
+  // When messages are sent (in MessageDetail), refresh the user.messages
+  const messageReload = async () => {
+    try {
+      const response = await axios({
+        url: `${apiUrl}/${userType}s/${user.id}`,
+        method: "GET",
+      });
+      setMessages(response.data.messages)
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   const handleLogOut = () => {
     setUser({});
@@ -71,12 +103,20 @@ function App() {
             path="/childreport/:childid"
             render={(routerProps) => <StudentReport {...routerProps} />}
           />
-          <Route exact path="/messages" component={Messages} />
           <Route
             exact
-            path="/messages/:teacherid/:caregiverid"
-            render={(routerProps) => <MessageDetail {...routerProps} />}
+            path="/messages"
+            render={(routerProps) => (
+              <Messages {...routerProps} caregivers={caregivers} messages={messages} />
+            )}
           />
+          <Route
+            exact
+            path="/messages/detail"
+            render={(routerProps) => <MessageDetail {...routerProps} messages={messages} messageReload={messageReload} caregivers={caregivers}/>}
+          
+          />
+          
         </Switch>
       </DataContext.Provider>
     </div>
