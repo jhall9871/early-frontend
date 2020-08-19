@@ -12,7 +12,6 @@ html {
   font-size: 16px;
 }
 
-
 :root {
   --indigo: #0d3b66;
   --cream: #faf0ca;
@@ -20,10 +19,6 @@ html {
   --orange: #ee964b;
   --red: #f95738;
 }
-
-/* font-family: 'Asap Condensed', sans-serif;
-font-family: 'Fredoka One', cursive;
-font-family: 'Pragati Narrow', sans-serif; */
 
 body {
   margin: 0;
@@ -47,9 +42,9 @@ h3 {
   font-family: "Fredoka One", cursive;
 }
 
-h2, h3 {
+h2,
+h3 {
   font-weight: 200;
-
 }
 
 ul {
@@ -94,10 +89,6 @@ nav a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.logo-container img {
-  width: 200px;
 }
 
 #home h2 {
@@ -224,7 +215,6 @@ nav a {
   font-weight: 200;
 }
 
-
 /*============ MessageDetail and MessageDetailCg ==========*/
 
 .message-detail {
@@ -296,9 +286,7 @@ nav a {
   cursor: pointer;
   background: transparent;
   color: var(--cream);
-
 }
-
 
 /*============ Student Report ==========*/
 
@@ -469,7 +457,9 @@ nav a {
   margin-right: 10px;
 }
 
-.admin-row form, label, select {
+.admin-row form,
+label,
+select {
   display: block;
 }
 
@@ -484,7 +474,8 @@ nav a {
   font-family: "Pragati Narrow", sans-serif;
 }
 
-.admin-row button, #assign-submit {
+.admin-row button,
+#assign-submit {
   padding: 10px;
   background: var(--orange);
   margin: 10px;
@@ -496,7 +487,8 @@ nav a {
   cursor: pointer;
 }
 
-.admin-row select, .admin-row option {
+.admin-row select,
+.admin-row option {
   font-family: "Pragati Narrow", sans-serif;
   border-radius: 10px;
   padding: 5px;
@@ -526,7 +518,8 @@ nav a {
   min-width: 300px;
 }
 
-.add-child-form input, .add-child-form button {
+.add-child-form input,
+.add-child-form button {
   font-family: "Pragati Narrow", sans-serif;
   padding: 5px;
   font-size: 1.2rem;
@@ -536,10 +529,10 @@ nav a {
   margin: 10px auto;
 }
 
-
 /*===========Teacher Dashboard============*/
 
-.dashboard h2, h3 {
+.dashboard h2,
+h3 {
   margin: 10px auto;
 }
 
@@ -564,7 +557,7 @@ nav a {
   padding: 10px;
 }
 
-  .child-tile img {
+.child-tile img {
   height: 180px;
   width: 180px;
   border-radius: 10px;
@@ -575,20 +568,103 @@ nav a {
   position: absolute;
   bottom: 3px;
   margin: 0;
-  background: rgba(244,211,94,1);
+  background: rgba(244, 211, 94, 1);
   border-radius: 7px;
   line-height: 1.6rem;
   padding: 2px 4px;
-  text-shadow: 1px 1px  var(--yellow);
+  text-shadow: 1px 1px var(--yellow);
 }
-
-
 
 /*===========Mobile=============*/
 
-@media only screen and (max-width:700px) {
+@media only screen and (max-width: 700px) {
   html {
     font-size: 12px;
   }
+  #logo-container img {
+    width: 200px;
+  }
+  #home form {
+    width: 100%;
+    display: grid;
+  }
+  #home, .messages, .message-detail, .student-report, .dashboard {
+  margin: 0;
+  border-radius: 0
+  }
+
+  .login-wrapper {
+    background: var(--yellow);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px 30px;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .photo-card {
+    top: 30px;
+    left: -10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+  }
+
+  .photo-card img {
+    height: 80px;
+    width: 80px;
+    border-radius: 10px;
+  }
+
+  .student-title-row {
+    padding-left: 5px;
+  }
   
+  .student-info-row {
+    padding: 90px 20px 20px 20px;
+  }
+
+  .student-info-row h3 {
+    font-size: 2rem;
+    margin-right: 20px;
+    margin-left: 10px;
+  }
+  
+  .student-info-row h4 {
+    font-size: 1.5rem;
+    margin-right: 20px;
+    margin-left: 10px;
+
+  }
+
+  .message-form-container button {
+    font-size: 2.3rem;
+    line-height: 2rem;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-left: 10px;
+    border: 2px solid var(--cream);
+  }
+  
+  .admin-row {
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 5px 5px;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  .admin-row img {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 2px 2px 5px;
+  }
+
 }
