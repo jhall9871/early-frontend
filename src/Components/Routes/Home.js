@@ -31,6 +31,7 @@ const Home = ({ handleLogIn, handleLogInChange }) => {
         <h2>Childcare Simplified</h2>
         <div className="login-wrapper">
           <h3>Log in:</h3>
+          <p className="demo">This is a demo. Just input "1" or "2" into any of the fields and click "submit."</p>
           <form onSubmit={handleLogIn}>
               <FontAwesomeIcon icon={faIdBadge} />
               <label htmlFor="admin">Admin</label>
@@ -56,7 +57,7 @@ const Home = ({ handleLogIn, handleLogInChange }) => {
                 placeholder="Caregiver ID"
                 onChange={handleLogInChange}
               ></input>
-              <input type="submit" className="submit-class"></input>
+              <button type="submit" className="submit-class">Submit</button>
           </form>
         </div>
       </div>
