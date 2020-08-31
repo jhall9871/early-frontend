@@ -48,7 +48,7 @@ const Home = ({ handleLogIn, handleLogInChange }) => {
             click "submit."
           </p>
           <form onSubmit={handleLogIn}>
-            <FontAwesomeIcon icon={faIdBadge} />
+            <FontAwesomeIcon icon={faIdBadge} title="administrator"/>
             <label htmlFor="admin">Admin</label>
             <input
               type="text"
@@ -56,7 +56,7 @@ const Home = ({ handleLogIn, handleLogInChange }) => {
               placeholder="Admin ID"
               onChange={handleLogInChange}
             ></input>
-            <FontAwesomeIcon icon={faChalkboardTeacher} />
+            <FontAwesomeIcon icon={faChalkboardTeacher} title="teacher"/>
             <label htmlFor="teacher">Teacher</label>
             <input
               type="text"
@@ -64,7 +64,7 @@ const Home = ({ handleLogIn, handleLogInChange }) => {
               placeholder="Teacher ID"
               onChange={handleLogInChange}
             ></input>
-            <FontAwesomeIcon icon={faUserFriends} />
+            <FontAwesomeIcon icon={faUserFriends} title="caregiver" />
             <label htmlFor="caregiver">Caregiver</label>
             <input
               type="text"

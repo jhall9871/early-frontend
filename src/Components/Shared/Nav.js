@@ -15,16 +15,16 @@ const Nav = ({ handleLogOut }) => {
   return (
     <nav>
       <Link to="/" >
-        <FontAwesomeIcon icon={faHome} />
+        <FontAwesomeIcon icon={faHome} title="home"/>
       </Link>
       <Link to="/messages">
-        <FontAwesomeIcon icon={faComments} />
+        <FontAwesomeIcon icon={faComments} title="messages" />
       </Link>
       <Link to={`/${userType}`}>
-        <FontAwesomeIcon icon={faTachometerAlt} />
+        <FontAwesomeIcon icon={faTachometerAlt} title="dashboard" />
       </Link>
       <Link to="/" onClick={handleLogOut}>
-        <FontAwesomeIcon icon={faSignOutAlt} />
+        <FontAwesomeIcon icon={faSignOutAlt} title="sign out"/>
       </Link>
     </nav>
   );
