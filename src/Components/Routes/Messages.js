@@ -1,12 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { DataContext } from "../../App";
 import { Link, Redirect } from "react-router-dom";
-import apiUrl from "../../apiConfig";
-import axios from "axios";
 
 const Messages = ({ caregivers, teachers, messages }) => {
   const { user, userType } = useContext(DataContext);
-  const userFullName = user.first_name + " " + user.last_name;
 
   // if there's no user, go back to login.
   if (user.id === undefined) {

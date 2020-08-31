@@ -6,7 +6,7 @@ import axios from "axios";
 import apiUrl from "../../apiConfig";
 
 const StudentReport = (props) => {
-  const { user, userType } = useContext(DataContext);
+  const { user } = useContext(DataContext);
   const id = props.match.params.childid;
   const [student, setStudent] = useState({});
 
@@ -125,7 +125,7 @@ const StudentReport = (props) => {
   return (
     <div className="student-report">
       <div className="photo-card">
-        <img src={student.photo}></img>
+        <img src={student.photo} alt={`${student.first_name} ${student.last_name}`}></img>
       </div>
       <div className="student-title-row">
         <h2>Student Report</h2>

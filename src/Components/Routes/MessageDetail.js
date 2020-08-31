@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 const MessageDetail = (props) => {
-  const { user, userType } = useContext(DataContext);
+  const { user } = useContext(DataContext);
   const caregiverId = props.location.state.caregiver_id;
   const userFullName = user.first_name + " " + user.last_name;
   const [newMessage, setNewMessage] = useState({
