@@ -168,7 +168,9 @@ nav a {
   font-family: "Pragati Narrow", sans-serif;
   color: var(--indigo);
   font-size: 1rem;
+  cursor: pointer;
 }
+
 
 /*============ Messages ==========*/
 
@@ -617,7 +619,7 @@ h3 {
     justify-content: center;
     align-items: center;
     overflow: auto;
-    height: 40%;
+    min-height: 260px;
   }
 
   .submit-class {

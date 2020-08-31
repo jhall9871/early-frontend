@@ -144,7 +144,7 @@ const AdminDash = () => {
         <ul>
           {orderedStudentsList.map((student) => (
             <li key={student.id} className="admin-row">
-              <img src={student.photo}></img>
+              <img src={student.photo} alt={`${student.first_name} ${student.last_name}`}></img>
               <div className="student-info">
                 <h4 className="admin-student-name">
                   {student.first_name} {student.last_name} <span className="pronouns">({student.pronouns})</span>

@@ -6,7 +6,7 @@ import axios from "axios";
 
 const CareGiverDash = () => {
   const [children, setChildren] = useState([]);
-  const { user, userType } = useContext(DataContext);
+  const { user } = useContext(DataContext);
 
   // When component mounts, get all students and set in state.
   useEffect(() => {
@@ -32,7 +32,7 @@ const CareGiverDash = () => {
         {children.map((child) => (
           <Link key={child.id} to={`/childreport/${child.id}`}>
             <div className="child-tile">
-              <img src={child.photo} />
+              <img src={child.photo} alt={`${child.first_name} ${child.last_name}`}/>
               <h4>
                 {child.first_name} {child.last_name}
               </h4>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,12 +10,11 @@ import {
 import { DataContext } from "../../App";
 
 const Nav = ({ handleLogOut }) => {
-  const [open, setOpen] = useState(true);
   const { userType } = useContext(DataContext);
 
   return (
     <nav>
-      <Link to="/">
+      <Link to="/" >
         <FontAwesomeIcon icon={faHome} />
       </Link>
       <Link to="/messages">

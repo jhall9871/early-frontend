@@ -7,7 +7,7 @@ import apiUrl from '../../apiConfig';
 
 const TeacherDash = () => {
   const [students, setStudents] = useState([]);
-  const { user, userType } = useContext(DataContext);
+  const { user } = useContext(DataContext);
 
 console.log('teacherdash user', user)
 
@@ -41,7 +41,7 @@ console.log('teacherdash user', user)
         {students.map((student) => (
           <Link key={student.id} to={`/childreport/${student.id}`}>
             <div className="child-tile">
-              <img src={student.photo} />
+              <img src={student.photo} alt={`${student.first_name} ${student.last_name}`} />
               <h4>
                 {student.first_name} {student.last_name}
               </h4>
